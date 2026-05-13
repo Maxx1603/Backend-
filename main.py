@@ -68,6 +68,10 @@ app.add_middleware(
 # GET ALL BOOKS
 # ---------------------------------------------------
 
+@app.get("/")
+def home():
+    return {"message": "Library API is running successfully"}
+
 @app.get("/books", response_model=List[Book])
 def get_books():
 
