@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 
 # ---------------------------------------------------
 # DATABASE CONNECTION
@@ -54,6 +55,13 @@ class Book(BaseModel):
 
 app = FastAPI(
     title="Mini Library API with SQLite"
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # ---------------------------------------------------
